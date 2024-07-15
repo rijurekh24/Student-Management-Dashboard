@@ -77,8 +77,8 @@ const StudentTable = () => {
     setFilter(event.target.value);
   };
 
-  const handleSnackbarClose = (event, reason) => {
-    if (reason === "clickaway") {
+  const handleSnackbarClose = (ev) => {
+    if (ev === "clickaway") {
       return;
     }
     setSnackbarOpen(false);
@@ -119,7 +119,7 @@ const StudentTable = () => {
         px: 2,
         borderRadius: "10px",
         mb: 3,
-        pt: 3,
+        pt: 2,
       }}
     >
       <Grid container spacing={2}>
