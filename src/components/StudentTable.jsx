@@ -36,21 +36,26 @@ const StudentTable = () => {
   const [filter, setFilter] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
+  //  set sorted data by ascending or descending
   const handleRequestSort = (property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
 
+  // for pagination
   const handleChangePage = (newPage) => {
     setPage(newPage);
   };
+
+  //  how many rows per page user wants to see
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
+  // delete functionality for user removal
   const handleDelete = () => {
     setStudents((prevStudents) =>
       prevStudents.filter((_, i) => i !== deleteIndex)
@@ -59,6 +64,7 @@ const StudentTable = () => {
     handleClose();
   };
 
+  //  delete pop up
   const handleClickOpen = (index) => {
     setDeleteIndex(index);
     setOpen(true);
@@ -69,14 +75,18 @@ const StudentTable = () => {
     setDeleteIndex(null);
   };
 
+  // searched user
   const handleSearch = (event) => {
     setSearch(event.target.value);
   };
+
+  // filtered data user according to their streams
 
   const handleFilter = (event) => {
     setFilter(event.target.value);
   };
 
+  //deletion confirmation snackbar close
   const handleSnackbarClose = (ev) => {
     if (ev === "clickaway") {
       return;
@@ -84,6 +94,7 @@ const StudentTable = () => {
     setSnackbarOpen(false);
   };
 
+  // filtering user according to their streams
   const filteredStudents = students.filter((student) => {
     return (
       (student["first_name"].toLowerCase().includes(search.toLowerCase()) ||
@@ -92,6 +103,7 @@ const StudentTable = () => {
     );
   });
 
+  //  for sorting data by ascending or descending order
   const sortedStudents = filteredStudents.sort((a, b) => {
     if (orderBy === "last year percentage ") {
       return order === "asc"
@@ -113,8 +125,6 @@ const StudentTable = () => {
   return (
     <Box
       sx={{
-        // width: "100%",
-        overflow: "hidden",
         boxShadow: 4,
         px: 2,
         borderRadius: "10px",
