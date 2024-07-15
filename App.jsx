@@ -4,7 +4,7 @@ import StudentTable from "./src/components/StudentTable";
 
 function App() {
   return (
-    <Box sx={{ p: 1 }}>
+    <Box sx={{ px: 2 }}>
       <Breadcrumbs sx={{ my: 1 }}>
         <Link style={{ textDecoration: "none" }} href="/">
           Home
