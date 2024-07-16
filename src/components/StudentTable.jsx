@@ -262,7 +262,7 @@ const StudentTable = () => {
           </TableHead>
           <TableBody>
             {displayedStudents.map((student, indx) => (
-              <TableRow role="checkbox" tabIndex={-1} key={indx}>
+              <TableRow key={indx}>
                 <TableCell>{student["first_name"]}</TableCell>
                 <TableCell>{student["last_name"]}</TableCell>
                 <TableCell>{student["class"]}</TableCell>
