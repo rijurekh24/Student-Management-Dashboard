@@ -31,20 +31,20 @@ const StudentTable = () => {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("first_name");
   const [open, setOpen] = useState(false);
-  const [deleteIndex, setDeleteIndex] = useState(null);
+  const [dltIndx, setDltIndx] = useState(null);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   // set sorted data by ascending or descending
-  const handleRequestSort = (property) => {
-    const isAsc = orderBy === property && order === "asc";
+  const handleRequestSort = (Hdfield) => {
+    const isAsc = orderBy === Hdfield && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
-    setOrderBy(property);
+    setOrderBy(Hdfield);
   };
 
   // for pagination
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (newPage) => {
     setPage(newPage);
   };
 
@@ -56,37 +56,35 @@ const StudentTable = () => {
 
   // delete functionality for user removal
   const handleDelete = () => {
-    setStudents((prevStudents) =>
-      prevStudents.filter((_, i) => i !== deleteIndex)
-    );
+    setStudents((prevStudents) => prevStudents.filter((_, i) => i !== dltIndx));
     setSnackbarOpen(true);
     handleClose();
   };
 
   // delete pop up
-  const handleClickOpen = (index) => {
-    setDeleteIndex(index);
+  const handleClickOpen = (indx) => {
+    setDltIndx(indx);
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
-    setDeleteIndex(null);
+    setDltIndx(null);
   };
 
   // searched user
-  const handleSearch = (event) => {
-    setSearch(event.target.value);
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
   };
 
   // filtered data user according to their streams
-  const handleFilter = (event) => {
-    setFilter(event.target.value);
+  const handleFilter = (e) => {
+    setFilter(e.target.value);
   };
 
   // deletion confirmation snackbar close
-  const handleSnackbarClose = (ev) => {
-    if (ev === "clickaway") {
+  const handleSnackbarClose = (e) => {
+    if (e === "clickaway") {
       return;
     }
     setSnackbarOpen(false);
@@ -263,8 +261,8 @@ const StudentTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {displayedStudents.map((student, index) => (
-              <TableRow role="checkbox" tabIndex={-1} key={index}>
+            {displayedStudents.map((student, indx) => (
+              <TableRow role="checkbox" tabIndex={-1} key={indx}>
                 <TableCell>{student["first_name"]}</TableCell>
                 <TableCell>{student["last_name"]}</TableCell>
                 <TableCell>{student["class"]}</TableCell>
@@ -276,7 +274,7 @@ const StudentTable = () => {
                   </IconButton>
                   <IconButton
                     color="error"
-                    onClick={() => handleClickOpen(index)}
+                    onClick={() => handleClickOpen(indx)}
                   >
                     <Delete />
                   </IconButton>
