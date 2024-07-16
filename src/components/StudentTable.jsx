@@ -44,7 +44,7 @@ const StudentTable = () => {
   };
 
   // for pagination
-  const handleChangePage = (newPage) => {
+  const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
@@ -309,11 +309,15 @@ const StudentTable = () => {
       </Dialog>
       <Snackbar
         open={snackbarOpen}
-        autoHideDuration={6000}
+        autoHideDuration={3000}
         onClose={handleSnackbarClose}
       >
-        <Alert onClose={handleSnackbarClose} severity="success">
-          The record was deleted successfully.
+        <Alert
+          onClose={handleSnackbarClose}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Record deleted successfully!
         </Alert>
       </Snackbar>
     </Box>
